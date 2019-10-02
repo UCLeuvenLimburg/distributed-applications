@@ -1,0 +1,26 @@
+\documentclass{ucll-slides}
+\usepackage{pxfonts}
+\usepackage{tikz}
+\usepackage{calc}
+\usepackage{ucll-code}
+
+
+\usetikzlibrary{calc}
+
+\coursename{Distributed Applications}
+\title{links and monitors}
+
+\tikzset{
+    process/.style={circle, draw=green!60, fill=green!12, very thick, minimum size=7mm},
+    dead process/.style={draw,cross out}
+}
+
+\begin{document}
+
+\maketitle
+
+\input{aux-unlinked.tex}
+\input{aux-linked.tex}
+\input{aux-monitors.tex}
+
+\end{document}

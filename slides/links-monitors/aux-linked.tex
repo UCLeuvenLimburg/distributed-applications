@@ -1,0 +1,54 @@
+\section{Linked processes}
+
+\frame{\tableofcontents[currentsection]}
+
+\begin{frame}
+    \frametitle{2 processes (\texttt{\&spawn\_link/1})}
+    \begin{center}
+        \begin{tikzpicture}
+            \coordinate (process A position) at (0,0);
+            \coordinate (process B position) at (2,0);
+
+            \only<1-3>{
+                \node[process] (process A) at (process A position) {A};
+            }
+            \only<4>{
+                \node[dead process] (process A) at (process A position) {A};
+            }
+
+            \only<1-2>{
+                \node[process] (process B) at (process B position) {B};
+            }
+            \only<3-4>{
+                \node[dead process] (process B) at (process B position) {B};
+            }
+
+            \draw[-latex] (process A) -- (process B);
+        \end{tikzpicture}
+    \end{center}
+    \vskip5mm
+    \begin{overprint}
+        \onslide<1>
+        \begin{center}
+            Process A initiates link
+        \end{center}
+        \vskip4mm
+        \code[language=elixir,font=\small,width=.95\linewidth]{linking.exs}
+
+        \onslide<2>
+        \begin{center}
+            Processes are now linked \textbf{bidirectionally}
+        \end{center}
+
+        \onslide<3>
+        \begin{center}
+            Process B dies
+        \end{center}
+
+        \onslide<4>
+        Process A receives a ''death message``, and if it is not a system process, no custom behaviour can be implemented when this message is received.
+        \vfill
+        \textit{Note: Even if it is a system process, the end result should also be death.
+        This is often used when you want to do certain actions, such as cleaning up your process.}
+    \end{overprint}
+\end{frame}

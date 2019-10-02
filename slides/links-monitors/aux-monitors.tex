@@ -1,0 +1,57 @@
+\section{Monitors}
+
+\frame{\tableofcontents[currentsection]}
+
+\begin{frame}
+    \frametitle{2 processes (\texttt{\&spawn/1})}
+    \begin{center}
+        \begin{tikzpicture}
+            \coordinate (process A position) at (0,0);
+            \coordinate (process B position) at (2,0);
+            \coordinate (process C position) at (2,-2);
+
+            \only<1>{
+                \node[process] (process A) at (process A position) {A};
+                \node[process] (process B) at (process B position) {B};
+                \draw[-latex] (process A) -- (process B);
+            }
+            \only<2>{
+                \node[process] (process A) at (process A position) {A};
+                \node[process] (process B) at (process B position) {B};
+                \draw[latex-] (process A) -- (process B);
+            }
+            \only<3>{
+                \node[process] (process A) at (process A position) {A};
+                \node[dead process] (process B) at (process B position) {B};
+                \draw[latex-] (process A) -- (process B);
+            }
+            \only<4>{
+                \node[process] (process A) at (process A position) {A};
+                \node[dead process] (process B) at (process B position) {B};
+                \node[process] (process C) at (process C position) {C};
+                \draw[latex-] (process A) -- (process B);
+                \draw[-latex] (process A) -- (process C);
+            }
+        \end{tikzpicture}
+    \end{center}
+    \vskip10mm
+    \begin{overprint}
+        \onslide<1>
+        \code[language=elixir,font=\small]{monitor.exs}
+
+        \onslide<2>
+        \begin{center}
+            Processes are linked \textbf{unidirectionally}
+        \end{center}
+
+        \onslide<3>
+        \begin{center}
+            Process B dies
+            \vskip2mm
+            This causes a message to be sent to A
+        \end{center}
+
+        \onslide<4>
+        Process A receives a "death message". A sample usage of a monitoring process would be starting up another process.
+    \end{overprint}
+\end{frame}
