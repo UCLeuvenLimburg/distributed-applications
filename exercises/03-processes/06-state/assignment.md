@@ -40,7 +40,7 @@ In Elixir, usage should look like this:
 
 ```elixir
 parent_pid = self()
-counter_pid = spawn( fn -> Counter.counter(parent_pid) )
+counter_pid = spawn( fn -> Counter.counter(parent_pid) end)
 
 # Ask for next number by sending it a dummy message
 send(counter_pid, nil)
