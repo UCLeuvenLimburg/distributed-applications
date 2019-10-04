@@ -51,7 +51,7 @@ defmodule Exercise do
 end
 
 parent_pid = self()
-spawn( fn -> Exercise.foo(parent_pid) )
+spawn( fn -> Exercise.foo(parent_pid) end)
 ```
 
 As you may have guessed, the `self()` function returns the calling process's pid.
