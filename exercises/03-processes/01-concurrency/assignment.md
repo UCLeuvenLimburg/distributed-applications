@@ -71,4 +71,4 @@ add `:timer.sleep(1000)` at the end of the script to make sure the two spawned p
 to do their thing.
 
 Run the code multiple times. You should be able to observe a change in the order in which `foo` and `bar` get printed.
-This is due that no guarantees are given as to when each process gets to runs.
+This is due that no guarantees are given as to when each process gets to run.
