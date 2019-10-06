@@ -30,7 +30,7 @@ The module name does not matter, choose one yourself.
 ## Task 2
 
 Next, write `say_n_times(n, message)` that successively prints `message` `n` times.
-Make use of `repeat_n_times` for this.
+Make use of `repeat` for this.
 
 Make sure to check your work after this step; there is no point in continuing
 without this part working as intended.
