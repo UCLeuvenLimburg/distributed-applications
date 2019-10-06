@@ -3,7 +3,7 @@
 Processes need to be able to communicate somehow,
 otherwise creating new processes would
 be a rather futile endeavor as they
-would be doomed to remain isolated in separate "universes."
+would be doomed to remain isolated in separate "universes".
 
 Communication between processes is done through message passing.
 Each process has its own *process id*, often abbreviated as pid.
