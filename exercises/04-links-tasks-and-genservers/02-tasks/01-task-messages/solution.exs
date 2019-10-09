@@ -1,9 +1,3 @@
-# <!-- Hoe is dit een oplossing voor de opgave? -->
-# <!-- Hier wordt aangetoond dat elke "response" v.e. task niet meer dan een message is. 
-# m.a.w. er kan d.m.v. patternmatching in je receive blok je resultaat opgehaald worden,
-#  en je zou theoretisch gezien Task.await of Task.yield niet nodig hebben 
-# Het is eerder de bedoeling om ze te laten snappen wat er op de achtergrond gebeurd dan gewoon de Task API te gebruiken -->
-
 # Basic syntax
 Task.async(fn -> :ok1 end)
 Task.async(fn -> :ok2 end)
