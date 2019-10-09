@@ -1,6 +1,6 @@
 # Assignment
 
-Right now, the parent process send a meaningful message to the `print` child
+Right now, the parent process sends a meaningful message to the `print` child
 process, which in turn sends back an arbitrary value to indicate
 it's done printing. Let's have the child process actually respond something interesting.
 
@@ -22,5 +22,5 @@ sends back `:yes`, `:maybe` or `:no`, following the rules laid out above.
 Test your implementation by
 
 * spawning the `magic_eight_ball` process;
-* sending it multiple questions ;
+* sending it multiple questions;
 * receiving the answers and printing them out.
