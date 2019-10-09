@@ -42,7 +42,6 @@ end
 
 The process can be started with the `start/1` function, which then initializes the process. When the initialization is complete, an infinite loop that receives messages is called upon. When a message is sent towards the library process to e.g. retrieve the list of the books, it'll send back all the available books to the pid.
 
-<!-- @Frederic, onderstaand stukje nodig? herschrijven? weglaten? Doe maar wat jou het beste lijkt. Dacht nog even kort te mentionen waarom dit onhandig is ivgm een genserver -->
 _Note that in order to support this construction, this takes a lot of work. A lot can go wrong when manually managing loops, state updates, messages, unexpected messages, etc..._
 
 This construction is so common, not to mention that there are a lot more common configuration parts not mentioned here, that this has been put in the GenServer behaviour. A GenServer, or generic server, is a process that has 2 parts defined in its module: the API and Server part.
@@ -50,17 +49,9 @@ This construction is so common, not to mention that there are a lot more common 
 To sum up some advantages:
 * Standard set of interface functions (more about this later)
 * Functionality for tracing and error reporting (we will not cover this extensively here, but it's worth noting)
-<!-- Dit wil ik wel expliciet zeggen, ondanks het feit dat ze supervisors nog niet zien -->
 * Fit into a supervision tree (more about this next lesson)
 
 Putting it very concisely, in all the years that Erlang has proven itself as a battle-tested programming language, there have been several "constructs" that are so common and became boilerplate code. GenServer abstracts this away, so that you can just focus on the important bits.
-<!--
-  Eerder beginnen met het doel van een GenServer. Onderstaand is implementatiedetail.
-  Beginnen met een simpel voorbeeld in "rauwe process-stijl" en dat upgraden naar een GenServer.
-
-  DONE
--->
-
 
 ## GenServer vs Agent vs Task
 
@@ -78,8 +69,6 @@ Look at the slides for an overview of the GenServer API.
 * **Server process:** calls the `init` function. You must make sure this phase doesn't take too long. If a lot of start up work has to be done after initializing the process, consider `handle_continue`. _Note that the argument from `GenServer.start` or `GenServer.start_link` is passed to the init function. This is most of the time a [keyword list](https://elixir-lang.org/getting-started/keywords-and-maps.html)._
 * **Server process:** After the init function is complete, the process starts `receive`-ing messages in a loop.
 * **Client/Server process:** The client will most often call a function, such as `MyGenServer.Counter.addone/0` or `MyGenServer.Counter.addone/1` (depends whether the process is name registered or not, more about that later), which will call the underlying `GenServer.cast`, `GenServer.call` or the basic `GenServer.send`.
-   <!-- Betekent weinig in deze context. Eerder vermelden dat call een resultaat teruggeeft, cast niet. 
-   DONE-->
   * Beware! `cast` doesn't return a result while `call` does.
   * You can specify your behaviour with `handle_cast`, `handle_call` and `handle_info`.
 * **Server process:** The `terminate` callback is called when `GenServer.terminate` is called.
@@ -126,9 +115,6 @@ You can copy the implementation above or define your own that converts the argum
 Writing this documentation is easy if all I have to do is copy the output from elixir, but maybe some highlights:
 
 `We will inject a default implementation` is a result of the `use` macro. Just like an interface, the GenServer behaviour requires us to implement some callbacks and the `init/1` function. When we write the `use` macro, we're actually allowing some other module to inject code into the current module. In this example, it has been detected that we didn't implement `init/1`. Though the GenServer behaviour requires this callback. Hence it injects the default implementation into our module.
-<!-- Ik begrijp deze zin niet. 
- => Deze uitleg beter? Ik wil niet te hard ingaan op het feit dat de GenServer module dan __using__ implementeerd. Dit lijkt me vrij out of scope.
--->
 
 Other than that, nothing is said of the API side which you will see most of the times (or is actually required). Let us refactor this:
 
@@ -152,16 +138,11 @@ Wonderful. Compiling this doesn't throw any warnings or errors anymore. But what
 
 We can now call `MyGenServer.start/1` which causes `GenServer.start/3` to be executed which starts the GenServer without linking it to the current process. It takes 3 arguments:
 
-<!-- Te veel detail. Uitstellen tot supervisors.
-DONE -->
 * `__MODULE__` refers to the current module's name. This is because the `init/1` function will be called after this on the specified module, as the warning already indicated. 
-* The second being the arguments for the `init/1` function, more about this later. <!-- Lijkt me niet te kloppen. DONE -->
+* The second being the arguments for the `init/1` function, more about this later.
 * The third parameter contains configuration data. Here you can configure the name registration, garbage collector, etc. A complete list can be found [here](https://hexdocs.pm/elixir/GenServer.html#t:option/0).
 
 #### The `init/1` callback
-
-<!-- Ik begrijp bovenstaande titel niet. Nergens staat er een waarschuwing. 
-DONE -->
 
 When we start a GenServer (e.g. `GenServer.start` or `GenServer.start_link`), the `init/1` callback is called upon. The process calling this function (e.g. your shell) will block until the response from your `init` function is returned. This is often frowned upon, as most of the heavy work necessary for computing your initials state is done in the `handle_continue` callback (we'll cover this later).
 
@@ -226,11 +207,6 @@ In the above example, you can see that the `defstruct` has several default value
 ```
 
 With the `defstruct task_limit: 2, tasks: []` statement, we've introduced default values. When we call `%TaskHandler{}`, we create a map (similar to the normal map usage), but we say that when no arguments are provided, we use the default values. If you want to override values, you can do this is the traditional way as you did with maps.
- <!-- Onduidelijk. -->
-
-<!-- %TaskHandler{} uitleggen 
-DONE -->
-
 
 Adding `@enforce_keys` will enforce giving necessary parameters to create your struct. A possible implementation could be:
 
@@ -264,8 +240,6 @@ end
 Right now we're using named processes, or named GenServer to be precise. Therefore we do not need to worry about PID's, as we can always retrieve it with `Process.whereis(TaskHandler)`. This is very useful for processes where only one kind of this process is active. As soon as you need multiple processes of a module, this approach is no longer possible and you'll have to work with PID's. 
 
 We will come back to this when we cover `handle_cast` and `handle_call`.
-<!-- Nergens wordt dit gebruikt en 't nut ervan is niet duidelijk. 
-DONE -->
 
 ### handle continue
 
@@ -289,13 +263,9 @@ end
 
 In the `init/1` callback you can see that instead of just saying `{:ok, state}`, we return a 3 element tuple with `{:continue, :start_recurring_tasks}`. This assures that the first message in the mailbox, after the GenServer process is alive, is `:start_recurring_tasks` which needs to be handled with `handle_info`. In this case, we'll use it to send periodic "checks".
 
-<!-- Zitten er dan messages in de mailbox voor dat de process geboren is?
-Yes! Erbij geschreven ter verduidelijking DONE -->
 _Note: the GenServer process is already alive when the function `init/1` is called!_
 
 ### handle info
-<!-- Documentatie lijkt dit tegen te spreken.
-FIXED -->
 We've now got a GenServer with a message that can't be handled, i.e., `:check_tasks`. If we don't define a `handle_info` clause dealing with this message, our GenServer will log this message and ignore it. Let us implement this now:
 
 ```elixir
