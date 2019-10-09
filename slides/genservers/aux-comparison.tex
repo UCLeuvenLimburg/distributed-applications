@@ -1,0 +1,90 @@
+\section{Comparison}
+\frame{\tableofcontents[currentsection]}
+
+\begin{frame}
+    \frametitle{GenServer vs normal processes}
+    \begin{columns}
+        \begin{column}[T]{0.5\textwidth}
+            GenServer
+            \vfill
+            \begin{itemize}
+                \small
+                \item Stateful computations
+                \item Common callbacks
+                \item Easily combinable with Supervisors or other OTP behaviours
+                \item Hot code reloading callback
+                \item Resource cleanup upon termination
+                \item Failure isolation
+            \end{itemize}
+        \end{column}
+        \begin{column}[T]{0.5\textwidth}
+            Processes
+            \begin{itemize}
+                \item You can do everything, but prone to errors.
+            \end{itemize}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}
+    \frametitle{GenServer vs Agents}
+    \begin{columns}
+        \begin{column}[T]{0.5\textwidth}
+            GenServer
+            \vfill
+            \begin{itemize}
+                \small
+                \item Stateful computations
+                \item Common callbacks
+                \item Easily combinable with Supervisors or other OTP behaviours
+                \item Hot code reloading callback
+                \item Resource cleanup upon termination
+                \item Failure isolation
+            \end{itemize}
+        \end{column}
+        \begin{column}[T]{0.5\textwidth}
+            Agents
+            \begin{itemize}
+                \small
+                \item GenServer underneath
+                \item Simple wrappers around state
+                \item Easy combinable with Supervisors
+            \end{itemize}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}
+    \frametitle{GenServer vs Tasks}
+    \begin{columns}
+        \begin{column}[T]{0.5\textwidth}
+            GenServer
+            \vfill
+            \begin{itemize}
+                \small
+                \item Stateful computations
+                \item Common callbacks
+                \item Combinable with Supervisors or other OTP behaviours
+                \item Hot code reloading callback
+                \item Resource cleanup upon termination
+                \item Failure isolation
+            \end{itemize}
+        \end{column}
+        \begin{column}[T]{0.5\textwidth}
+            Tasks
+            \begin{itemize}
+                \small
+                \item Asynchronous units of computation
+                \item Combinable with Supervisors
+            \end{itemize}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Common Qualities}
+    \begin{itemize}
+        \item It's all concurrent!
+        \item \textit{If you do it right}, uptime shouldn't be affected by unforeseen errors!
+    \end{itemize}
+\end{frame}
