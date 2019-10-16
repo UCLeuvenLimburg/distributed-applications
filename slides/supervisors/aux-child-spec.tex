@@ -1,0 +1,119 @@
+\section{Child specifications}
+
+\frame{\tableofcontents[currentsection]}
+
+
+\begin{frame}
+    \frametitle{What should a child specification contain?}
+    \begin{itemize}
+        \item Id for the supervisor
+        \item Module, Function \& Arguments (often abbreviated to MFA)
+        \item * Restart behaviour (transient, temporary or permanent)
+        \item * Type (worker or supervisor)
+        \item * Shutdown (timeout or :brutal\_kill)
+    \end{itemize}
+
+    \vfill
+
+    \footnotesize
+    Depends on the supervisor. \\
+    * values have default values and are thus optional
+\end{frame}
+
+\begin{frame}
+    \frametitle{How to implement / configure child specs?}
+    \begin{itemize}
+        \item Let existing OTP behaviours inject it for you
+        \item Pass it as a map
+        \item Implement the child\_specs(opts) function in the module
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Option 1: existing OTP behaviours}
+    \begin{center}
+        use GenServer \\
+        use Agent \\
+        ...
+    \end{center}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Option 1: merits and demerits}
+    \begin{columns}
+
+        \begin{column}{0.5\textwidth}
+            \begin{itemize}
+                \item[+] Easy
+                \item[+] Not likely to make mistakes
+            \end{itemize}
+        \end{column}
+
+        \begin{column}{0.5\textwidth}
+            \begin{itemize}
+                \item[-] Configuration by overriding
+                \item[-] Unnecessary refactoring
+                \item[-] Other unwanted side effects
+                \item[-] Larger code base (slower) 
+            \end{itemize}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Option 2: pass as a map}
+    \includegraphics[scale=0.59]{03_pass_children_as_map}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Option 2: merits and demerits}
+    \begin{columns}
+
+        \begin{column}{0.5\textwidth}
+            \begin{itemize}
+                \item[+] Complete control
+                \item[+] No unnecessary extra code
+            \end{itemize}
+        \end{column}
+
+        \begin{column}{0.5\textwidth}
+            \begin{itemize}
+                \item[-] Manual ID allocation 
+                \item[-] Not really open for extension
+            \end{itemize}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Option 3: implement child\_specs/1}
+    \includegraphics[scale=0.55]{04_implement_child_specs_part1}
+    \vskip2mm
+    \hrule
+    \vskip2mm
+    \includegraphics[scale=0.55]{04_implement_child_specs_part2}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Option 3: implement child\_specs/1}
+    \begin{columns}
+
+        \begin{column}{0.5\textwidth}
+            \begin{itemize}
+                \item[+] Complete control
+                \item[+] Open for extension
+                \item[+] Can provide support for dynamic ID's *
+            \end{itemize}
+        \end{column}
+
+        \begin{column}{0.5\textwidth}
+            \begin{itemize}
+                \item[-] Needs implementation in your module
+                \item[-] More factors have to be considered
+                \item[-] A better solution probably already exists
+            \end{itemize}
+        \end{column}
+    \end{columns}
+    \vfill
+    \footnotesize * Dynamic ID's are not advised with normal supervisors!
+\end{frame}
