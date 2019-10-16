@@ -11,4 +11,5 @@ layout: default
 * [Lists](lists.md)
 * [Links and monitors](links-monitors/links-monitors.md)
 * [Tasks](tasks/tasks.md)
+* [Genservers](genservers/genserver.md)
 * [Supervisors](supervisors/supervisors.md)
