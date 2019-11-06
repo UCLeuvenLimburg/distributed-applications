@@ -1,0 +1,28 @@
+\section{Nodes in Elixir}
+\frame{\tableofcontents[currentsection]}
+
+\begin{frame}
+    \frametitle{Give your node a name}
+    2 options:
+    \begin{itemize}
+        \item short name: name@hostname
+        \item long name: fully qualified name (with ip-addres for example)
+    \end{itemize}
+    
+    \vfill
+
+    Check this with Node.self/0
+\end{frame}
+
+\begin{frame}
+    \frametitle{Give your node a name}
+    
+    iex --werl --sname ping (--cookie X)
+
+    iex --werl --sname pong (--cookie X)
+
+    \vfill
+
+    From pong@yourhost: \\
+    Node.ping :pong@host
+\end{frame}
