@@ -33,9 +33,9 @@ end
 MyBuilding.start(ProximusBlokD)
 ```
 
-Execute this code at node B. Verify that your GenServer is running with Process.whereis/1 at node B.
+Execute this code at node B. Verify that your GenServer is running with `Process.whereis/1` at node B.
 
-When you do the same verification at node A with Process.whereis/1, you shouldn't be able to find the GenServer on your node.
+When you perform the same verification at node A with `Process.whereis/1`, you shouldn't be able to find the GenServer on your node.
 
 Goal of this exercise:
-Retrieve the rooms for the ProximusBlokD building on node A (the node where the process is NOT running). Use the familiar GenServer.call
+Retrieve the rooms for the ProximusBlokD building on node A (the node where the process is NOT running). Use the familiar `GenServer.call`.
