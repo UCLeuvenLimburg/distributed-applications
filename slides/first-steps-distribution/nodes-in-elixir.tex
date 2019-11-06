@@ -3,26 +3,26 @@
 
 \begin{frame}
     \frametitle{Give your node a name}
-    2 options:
+    Two options:
     \begin{itemize}
-        \item short name: name@hostname
-        \item long name: fully qualified name (with ip-addres for example)
+        \item short name: \texttt{name@hostname}
+        \item long name: fully qualified name (with ip-address for example)
     \end{itemize}
     
     \vfill
 
-    Check this with Node.self/0
+    Check this with \texttt{Node.self/0}
 \end{frame}
 
 \begin{frame}
     \frametitle{Give your node a name}
     
-    iex --werl --sname ping (--cookie X)
+    \texttt{iex --werl --sname ping (--cookie X)}
 
-    iex --werl --sname pong (--cookie X)
+    \texttt{iex --werl --sname pong (--cookie X)}
 
     \vfill
 
     From pong@yourhost: \\
-    Node.ping :pong@host
+    \texttt{Node.ping :pong@host}
 \end{frame}
