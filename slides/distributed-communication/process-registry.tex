@@ -45,7 +45,7 @@
     \frametitle{Goal: Global Processes}
     On node A: \\
     \texttt{\{:ok, pid\} = GenServer.start\_link(.. , .. , [name: ProcessA])} \\
-    \texttt{:global.register\_name(ProcessA, p)}
+    \texttt{:global.register\_name(ProcessA, pid)}
 
     \vfill
 
