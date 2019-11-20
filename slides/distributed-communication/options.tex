@@ -5,15 +5,15 @@
 \begin{frame}
     \frametitle{Options}
     \begin{itemize}
-        \item Node.spawn\_link
-        \item :rpc (Remote procedure calls)
+        \item \texttt{Node.spawn\_link}
+        \item \texttt{:rpc} (Remote procedure calls)
         \item GenServer API
         \item Tasks
     \end{itemize}
 \end{frame}
 
 \begin{frame}
-    \frametitle{Node.spawn}
+    \frametitle{\texttt{Node.spawn}}
     Spawns process outside of supervision trees (on other node). 
     
     \vfill
@@ -22,20 +22,20 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{:rpc (Remote procedure calls)}
+    \frametitle{\texttt{:rpc} (Remote Procedure Calls)}
     Example usage: \\
     \texttt{:rpc.call(:"foo@computer-name", Hello, :world, [])}
     \vfill
 \end{frame}
 
 \begin{frame}
-    \frametitle{:rpc (Remote procedure calls)}
+    \frametitle{\texttt{:rpc} (Remote Procedure Calls)}
     Caveats: 
     \begin{itemize}
-        \item Manually need to enter other node its name.
+        \item Need to manually enter other node its name.
         \item Caller needs to know what modules are compiled on the other node.
         \item Executes a module function on a remote node. No global processes.
-        \item implies master-slave setup. (All knowing master executes code on slaves)
+        \item Implies master-slave setup. (All knowing master executes code on slaves)
     \end{itemize}
 \end{frame}
 
@@ -50,7 +50,7 @@
     \frametitle{GenServer API}
     Caveats: 
     \begin{itemize}
-        \item Manually need to enter other node its name.
+        \item Need to manually enter other node its name.
         \item Caller needs to know what genservers are running on the other node.
         \item Can't guarantee uniqueness of processes between nodes.
     \end{itemize}
@@ -68,10 +68,10 @@
     \frametitle{Tasks (remote node spawning)}
     Caveats: 
     \begin{itemize}
-        \item Manually need to enter other node its name.
+        \item Need to manually enter other node its name.
         \item Caller needs to know that there is a remote tasksupervisor
         \item Limited to tasks.
-        \item implies master-slave setup. (All knowing master starts tasks on slaves)
+        \item Implies master-slave setup. (All knowing master starts tasks on slaves)
     \end{itemize}
 \end{frame}
 
