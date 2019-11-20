@@ -1,0 +1,66 @@
+\section{Process registration}
+
+\frame{\tableofcontents[currentsection]}
+
+\begin{frame}
+    \frametitle{What is a process registry?}
+    \begin{itemize}
+        \item process with a key-value datastructure 
+        \item maps "identifiers" with PID's
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{What is a process registry?}
+    Your Assignment.ProcessManager!!!
+    \vfill
+    But how do we do this distributed?
+\end{frame}
+
+\begin{frame}
+    \frametitle{libraries}
+    \begin{itemize}
+        \item :global : Erlang global process registry
+        \item ostinelli/syn: global process registry \& group manager
+        \item bitwalker/swarm: global process registry \& so much more
+    \end{itemize}
+    
+    \vfill
+
+    (We'll use :global for now.)
+\end{frame}
+
+\begin{frame}
+    \frametitle{Goal: global processes}
+    On node A: \\
+    \texttt{\{:ok, pid\} = GenServer.start\_link(.. , .. , [name: ProcessA])} 
+
+    \vfill
+
+    On node B: \\
+    \texttt{Process.whereis(ProcessA) \# will return nil} 
+\end{frame}
+
+\begin{frame}
+    \frametitle{Goal: global processes}
+    On node A: \\
+    \texttt{\{:ok, pid\} = GenServer.start\_link(.. , .. , [name: ProcessA])} \\
+    \texttt{:global.register\_name(ProcessA, p)}
+
+    \vfill
+
+    On node B: \\
+    \texttt{Process.whereis(ProcessA) \# will still return nil} \\ 
+    \texttt{:global.whereis\_name(ProcessA) \# will return pid} \\ 
+\end{frame}
+
+\begin{frame}
+    \frametitle{Goal: global processes}
+    Note: you can register a process as a tuple. \\ 
+    (\texttt{\{Node.self(), \_\_MODULE\_\_\}} is common usage.)
+
+    \vfill
+
+    Short demo\\
+    \tiny{(demo code is in the exercises folder)}
+\end{frame}

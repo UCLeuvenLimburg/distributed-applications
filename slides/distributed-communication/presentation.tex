@@ -1,0 +1,29 @@
+\documentclass{ucll-slides}
+\usepackage{pxfonts}
+\usepackage{calc}
+\usepackage{ucll-code}
+\usepackage{graphicx}
+
+\graphicspath{ {./images/} }
+
+\coursename{Distributed Applications}
+\title{Distributed communication}
+
+\newcommand\blfootnote[1]{%
+  \begingroup
+  \renewcommand\thefootnote{}\footnote{\tiny #1}%
+  \addtocounter{footnote}{-1}%
+  \endgroup
+}
+
+\setbeamertemplate{navigation symbols}{}
+
+\begin{document}
+
+\maketitle
+
+\input{recap.tex}
+\input{options.tex}
+\input{process-registry.tex}
+
+\end{document}
