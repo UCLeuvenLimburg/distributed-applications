@@ -23,7 +23,7 @@ defmodule Tests do
     @expected expected
 
     test "sum(#{Kernel.inspect(input)}) should be #{expected}" do
-      assert Sum.sum(@input) == @expected
+      assert Exercise.sum(@input) == @expected
     end
   end
 end
