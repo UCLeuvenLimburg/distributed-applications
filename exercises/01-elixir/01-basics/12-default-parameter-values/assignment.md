@@ -26,7 +26,7 @@ end
 ## Task
 
 Define a function `Math.range_sum(to, from, step)` that computes
-the sum of the numbers from, from + step, from + 2 &times step + ... + to.
+the sum of the numbers from, from + step, from + 2 &times; step + ... + to.
 For example, `range_sum(5, 0, 1)` must equal `1 + 2 + 3 + 4 + 5 = 15`,
 and `range_sum(5, 0, 2)` must equal `0 + 2 + 4 = 6`.
 
