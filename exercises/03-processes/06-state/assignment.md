@@ -87,7 +87,7 @@ by one at each receive. Give it a couple of minutes.
 
 Here's the solution to the above dilemma:
 
-* Add an extra parameter `current` to `counter`. Set is default value to `0`.
+* Add an extra parameter `current` to `counter`. Set its default value to `0`.
 * Have `counter`'s recursive call pass along `counter + 1`, so that the next iteration gets an incremented value.
 
 Run the program to check that everything works as advertised.
