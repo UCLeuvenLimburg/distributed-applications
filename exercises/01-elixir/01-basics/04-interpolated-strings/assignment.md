@@ -17,6 +17,7 @@ Elixir provides the same concept using a slightly different syntax:
 ```elixir
 def greet(name) do
     "Hello, #{name}"
+    end
 ```
 
 ## Task
