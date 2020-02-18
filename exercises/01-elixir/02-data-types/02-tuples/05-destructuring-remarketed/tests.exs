@@ -24,7 +24,7 @@ defmodule Tests do
   check that: Math.simplify(0), is_equal_to: 0
   check that: Math.simplify({:+, :a, :b}), is_equal_to: {:+, :a, :b}
 
-  # x + 0 == 0 + x == 0
+  # x + 0 == 0 + x == x
   check that: Math.simplify({:+, :x, 0}), is_equal_to: :x
   check that: Math.simplify({:+, 0, :x}), is_equal_to: :x
 
