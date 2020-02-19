@@ -26,7 +26,7 @@ there is not a lot to tell. The main difference is that Elixir's maps
 cannot be modified, so that's something you'll have to keep in mind
 when interacting with them.
 
-We refer you to on the [online documentation](https://hexdocs.pm/elixir/Map.html)
+We refer you to the [online documentation](https://hexdocs.pm/elixir/Map.html)
 for further information.
 
 ## Task
