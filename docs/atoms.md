@@ -92,7 +92,7 @@ of these is useful when dealing with identifiers. In fact, very
 few operations are necessary: we want to be able to efficiently
 compare and copy identifiers. Strings are slow for both these operations.
 
-Instead of using strings, which provide you with a a lot
+Instead of using strings, which provide you with a lot
 of unnecessary flexibility, let's find another data type
 that is more restricted yet more efficient. A good choice would
 be a simple integer. Comparing them is a simple operation (e.g., no loops involved)
